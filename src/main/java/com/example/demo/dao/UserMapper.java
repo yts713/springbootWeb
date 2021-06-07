@@ -93,4 +93,6 @@ public interface UserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(User record);
+    /*通过账户密码查找用户*/
+    User selectByUsernameAndPassword(String username,String password);
 }
