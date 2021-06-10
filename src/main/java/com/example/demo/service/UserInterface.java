@@ -4,6 +4,8 @@ package com.example.demo.service;
 
 
 
+import com.example.demo.common.ReturnResult;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.Session;
 
@@ -15,5 +17,5 @@ import javax.websocket.Session;
  */
 
 public interface UserInterface {
-    String userLogin(String username, String password);
+    ReturnResult userLogin(HttpServletRequest request,String username, String password);
 }

@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @ClassName yts
@@ -19,19 +20,21 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Service
 public class UserInterfaceImpl implements UserInterface {
-    @Mapper
+   @Autowired
     private UserMapper userMapper;
     @Override
-    public String userLogin(String username, String password) {
+    public ReturnResult userLogin(HttpServletRequest request,String username, String password) {
         ReturnResult returnResult = new ReturnResult();
         User user = userMapper.selectByUsernameAndPassword(username, password);
         if(user==null){
             returnResult.setFlag("0");
             returnResult.setMessage("用户账户或密码错误");
         }else{
+            HttpSession session = request.getSession();
+            session.setAttribute("user",user);
             returnResult.setFlag("1");
             returnResult.setMessage("用户登录成功");
         }
-        return null;
+        return returnResult;
     }
 }

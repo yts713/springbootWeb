@@ -66,13 +66,14 @@
                 if($.trim(password)==""){
                     alert("密码不能为空");
                 }
-                alert(real_path);
                 $.ajax({
                     url:real_path+"/loginAct",
                     type:"post",
                     data:{username:username,password:password},
                     success:function(data){
-
+                        if(data.flag=="1"){
+                            alert("登陆成功");
+                        }
                     },
                     error:function () {
                         alert("网络错误");

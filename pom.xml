@@ -30,7 +30,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <version>5.1.8</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,12 +53,28 @@
         </dependency>
         <!--热部署-->
         <dependency>
-            <groupId></groupId>
-            <artifactId>dev</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
-
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -75,6 +91,16 @@
                     <configurationFile>src/main/resources/generator/generatorConfig.xml</configurationFile>
                 </configuration>
             </plugin>
+
+           <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+               <configuration>
+                   <!-- 没有该配置，devtools 不生效 -->
+                   <fork>true</fork>
+                   <addResources>true</addResources>
+               </configuration>
+           </plugin>
         </plugins>
 
     </build>
