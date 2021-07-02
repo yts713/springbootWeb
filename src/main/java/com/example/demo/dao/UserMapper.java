@@ -6,8 +6,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
-
 @Mapper
 public interface UserMapper {
     /**
@@ -97,6 +95,6 @@ public interface UserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(User record);
-    /*通过账户密码查找用户*/
-    User selectByUsernameAndPassword(String username,String password);
+
+    User selectByUsernameAndPassword(String username, String password);
 }
